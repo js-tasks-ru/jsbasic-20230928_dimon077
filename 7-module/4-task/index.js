@@ -27,7 +27,7 @@ export default class StepSlider {
     this.addClassActive(this.value);
 
     this.elem.addEventListener('click', event => {
-      let clickInPercents = Math.round((event.clientX - this.elem.offsetLeft) / (this.elem.clientWidth / 100));
+      let clickInPercents = Math.round((event.clientX - this.elem.getBoundingClientRect().left) / (this.elem.clientWidth / 100));
       let step = Math.floor((clickInPercents + this.stepInPercents / 2) / this.stepInPercents);
       this.addClassActive(step);
       this.changeSlider();
@@ -46,7 +46,7 @@ export default class StepSlider {
   }
 
   onMove = (event) => {
-    let stepInPercents = Math.round((event.clientX - this.elem.offsetLeft) / (this.elem.clientWidth / 100));
+    let stepInPercents = Math.round((event.clientX - this.elem.getBoundingClientRect().left) / (this.elem.clientWidth / 100));
 
     if (stepInPercents < 0) {
       stepInPercents = 0;
